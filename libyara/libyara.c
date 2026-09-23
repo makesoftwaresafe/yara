@@ -547,3 +547,27 @@ YR_API int yr_get_configuration_uint64(YR_CONFIG_NAME name, uint64_t *value)
     return ERROR_INVALID_ARGUMENT;
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Get the version of the library loaded at runtime.
+//
+// The YR_MAJOR_VERSION, YR_MINOR_VERSION and YR_MICRO_VERSION macros are fixed
+// at compile time, so a program linked against libyara.so cannot use them to
+// tell which version it ended up with. This function reports the version of
+// the library that is actually loaded.
+//
+// Any argument may be NULL if the caller does not need that component. This
+// function does not depend on any global state, so unlike the rest of the API
+// it can be called before yr_initialize.
+//
+YR_API void yr_get_version(int *major, int *minor, int *micro)
+{
+  if (major != NULL)
+    *major = YR_MAJOR_VERSION;
+
+  if (minor != NULL)
+    *minor = YR_MINOR_VERSION;
+
+  if (micro != NULL)
+    *micro = YR_MICRO_VERSION;
+}

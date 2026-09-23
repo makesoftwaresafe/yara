@@ -42,6 +42,28 @@ int main(int argc, char **argv)
 
   int result = strcmp(PACKAGE_VERSION, YR_VERSION);
 
+  // yr_get_version must report the same version the macros carry, and must
+  // work before yr_initialize and with any argument omitted.
+
+  int major = -1, minor = -1, micro = -1;
+
+  yr_get_version(&major, &minor, &micro);
+
+  if (major != YR_MAJOR_VERSION || minor != YR_MINOR_VERSION ||
+      micro != YR_MICRO_VERSION)
+    result = 1;
+
+  major = minor = micro = -1;
+
+  yr_get_version(&major, NULL, NULL);
+  yr_get_version(NULL, &minor, NULL);
+  yr_get_version(NULL, NULL, &micro);
+  yr_get_version(NULL, NULL, NULL);
+
+  if (major != YR_MAJOR_VERSION || minor != YR_MINOR_VERSION ||
+      micro != YR_MICRO_VERSION)
+    result = 1;
+
   YR_DEBUG_FPRINTF(
       1, stderr, "} = %d // %s() in %s\n", result, __FUNCTION__, argv[0]);
 

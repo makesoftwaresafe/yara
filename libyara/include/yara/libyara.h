@@ -87,6 +87,12 @@ YR_API int yr_initialize(void);
 
 YR_API int yr_finalize(void);
 
+// Returns the version of the library actually loaded at runtime, which is not
+// necessarily the one the caller was compiled against. Any of the arguments
+// may be NULL if that component is not needed. Unlike the rest of the API this
+// can be called before yr_initialize.
+YR_API void yr_get_version(int* major, int* minor, int* micro);
+
 YR_API int yr_set_configuration(YR_CONFIG_NAME, void*);
 YR_API int yr_set_configuration_uint32(YR_CONFIG_NAME, uint32_t);
 YR_API int yr_set_configuration_uint64(YR_CONFIG_NAME, uint64_t);

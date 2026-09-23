@@ -510,6 +510,19 @@ Functions
   success another error code in case of error. The list of possible return
   codes vary according to the modules compiled into YARA.
 
+.. c:function:: void yr_get_version(int* major, int* minor, int* micro)
+
+  Get the version of the library loaded at runtime. The
+  :c:macro:`YR_MAJOR_VERSION`, :c:macro:`YR_MINOR_VERSION` and
+  :c:macro:`YR_MICRO_VERSION` macros are fixed when your program is compiled,
+  so a program linked against a shared ``libyara`` cannot use them to tell
+  which version it actually got. This function reports that.
+
+  Any argument may be ``NULL`` if you do not need that component. Unlike the
+  rest of the API, this may be called before :c:func:`yr_initialize`.
+
+  .. versionadded:: 4.6.0
+
 .. c:function:: int yr_compiler_create(YR_COMPILER** compiler)
 
   Create a YARA compiler. You must pass the address of a pointer to a
