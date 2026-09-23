@@ -69,11 +69,21 @@ Reference
     .. c:type:: EM_860
     .. c:type:: EM_MIPS
     .. c:type:: EM_MIPS_RS3_LE
+    .. c:type:: EM_PARISC
+    .. c:type:: EM_SPARC32PLUS
     .. c:type:: EM_PPC
     .. c:type:: EM_PPC64
+    .. c:type:: EM_S390
+    .. c:type:: EM_MCORE
+    .. c:type:: EM_RCE
     .. c:type:: EM_ARM
+    .. c:type:: EM_SH
+    .. c:type:: EM_SPARCV9
     .. c:type:: EM_X86_64
+    .. c:type:: EM_ARC_COMPACT
     .. c:type:: EM_AARCH64
+    .. c:type:: EM_BPF
+    .. c:type:: EM_LOONGARCH
 
     *Example: elf.machine == elf.EM_X86_64*
 

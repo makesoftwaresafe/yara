@@ -66,11 +66,20 @@ typedef uint64_t elf64_xword_t;
 #define ELF_EM_860         0x0007  // Intel 80860
 #define ELF_EM_MIPS        0x0008  // MIPS I Architecture
 #define ELF_EM_MIPS_RS3_LE 0x000A  // MIPS RS3000 Little-endian
+#define ELF_EM_PARISC      0x000F  // HP PA-RISC
+#define ELF_EM_SPARC32PLUS 0x0012  // Sun's "v8plus"
 #define ELF_EM_PPC         0x0014  // PowerPC
 #define ELF_EM_PPC64       0x0015  // 64-bit PowerPC
+#define ELF_EM_S390        0x0016  // IBM S/390
+#define ELF_EM_MCORE       0x0027  // Motorola M*Core, registered as EM_RCE
 #define ELF_EM_ARM         0x0028  // ARM
+#define ELF_EM_SH          0x002A  // Renesas (formerly Hitachi) SuperH
+#define ELF_EM_SPARCV9     0x002B  // 64-bit SPARC v9
 #define ELF_EM_X86_64      0x003E  // AMD/Intel x86_64
+#define ELF_EM_ARC_COMPACT 0x005D  // ARC International ARCompact
 #define ELF_EM_AARCH64     0x00B7  // 64-bit ARM
+#define ELF_EM_BPF         0x00F7  // Linux BPF in-kernel virtual machine
+#define ELF_EM_LOONGARCH   0x0102  // LoongArch
 
 #define ELF_CLASS_NONE 0x0000
 #define ELF_CLASS_32   0x0001  // 32bit file

@@ -14,6 +14,50 @@ int main(int argc, char** argv)
 
   yr_initialize();
 
+  // Each newly exposed e_machine value, checked end to end: patch the value
+  // into the ELF header and confirm elf.machine reports it under the new
+  // constant. Catches both a wrong constant and a value the module drops.
+  struct
+  {
+    const char* name;
+    uint16_t value;
+  } machines[] = {
+      {"EM_PARISC", 15},
+      {"EM_SPARC32PLUS", 18},
+      {"EM_S390", 22},
+      {"EM_MCORE", 39},
+      {"EM_RCE", 39},
+      {"EM_SH", 42},
+      {"EM_SPARCV9", 43},
+      {"EM_ARC_COMPACT", 93},
+      {"EM_BPF", 247},
+      {"EM_LOONGARCH", 258},
+  };
+
+  // e_machine sits at offset 18 and ELF32_FILE is little-endian.
+  uint8_t saved_machine[2] = {ELF32_FILE[18], ELF32_FILE[19]};
+
+  for (size_t i = 0; i < sizeof(machines) / sizeof(machines[0]); i++)
+  {
+    char rule[256];
+
+    ELF32_FILE[18] = (uint8_t) (machines[i].value & 0xFF);
+    ELF32_FILE[19] = (uint8_t) (machines[i].value >> 8);
+
+    snprintf(
+        rule,
+        sizeof(rule),
+        "import \"elf\" rule test { condition: elf.machine == elf.%s and "
+        "elf.machine == %u }",
+        machines[i].name,
+        machines[i].value);
+
+    assert_true_rule_blob(rule, ELF32_FILE);
+  }
+
+  ELF32_FILE[18] = saved_machine[0];
+  ELF32_FILE[19] = saved_machine[1];
+
   assert_true_rule_blob(
       "import \"elf\" rule test { condition: elf.type }", ELF32_FILE);
 

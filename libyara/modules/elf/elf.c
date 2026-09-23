@@ -851,11 +851,21 @@ begin_declarations
   declare_integer("EM_860");
   declare_integer("EM_MIPS");
   declare_integer("EM_MIPS_RS3_LE");
+  declare_integer("EM_PARISC");
+  declare_integer("EM_SPARC32PLUS");
   declare_integer("EM_PPC");
   declare_integer("EM_PPC64");
+  declare_integer("EM_S390");
+  declare_integer("EM_MCORE");
+  declare_integer("EM_RCE");
   declare_integer("EM_ARM");
+  declare_integer("EM_SH");
+  declare_integer("EM_SPARCV9");
   declare_integer("EM_X86_64");
+  declare_integer("EM_ARC_COMPACT");
   declare_integer("EM_AARCH64");
+  declare_integer("EM_BPF");
+  declare_integer("EM_LOONGARCH");
 
   declare_integer("SHT_NULL");
   declare_integer("SHT_PROGBITS");
@@ -1038,11 +1048,23 @@ int module_load(
   yr_set_integer(ELF_EM_860, module_object, "EM_860");
   yr_set_integer(ELF_EM_MIPS, module_object, "EM_MIPS");
   yr_set_integer(ELF_EM_MIPS_RS3_LE, module_object, "EM_MIPS_RS3_LE");
+  yr_set_integer(ELF_EM_PARISC, module_object, "EM_PARISC");
+  yr_set_integer(ELF_EM_SPARC32PLUS, module_object, "EM_SPARC32PLUS");
   yr_set_integer(ELF_EM_PPC, module_object, "EM_PPC");
   yr_set_integer(ELF_EM_PPC64, module_object, "EM_PPC64");
+  yr_set_integer(ELF_EM_S390, module_object, "EM_S390");
+  yr_set_integer(ELF_EM_MCORE, module_object, "EM_MCORE");
+  // EM_RCE is the name 0x27 was originally registered under and is still what
+  // some toolchains emit. Same value, exposed so either name works in a rule.
+  yr_set_integer(ELF_EM_MCORE, module_object, "EM_RCE");
   yr_set_integer(ELF_EM_ARM, module_object, "EM_ARM");
+  yr_set_integer(ELF_EM_SH, module_object, "EM_SH");
+  yr_set_integer(ELF_EM_SPARCV9, module_object, "EM_SPARCV9");
   yr_set_integer(ELF_EM_X86_64, module_object, "EM_X86_64");
+  yr_set_integer(ELF_EM_ARC_COMPACT, module_object, "EM_ARC_COMPACT");
   yr_set_integer(ELF_EM_AARCH64, module_object, "EM_AARCH64");
+  yr_set_integer(ELF_EM_BPF, module_object, "EM_BPF");
+  yr_set_integer(ELF_EM_LOONGARCH, module_object, "EM_LOONGARCH");
 
   yr_set_integer(ELF_SHT_NULL, module_object, "SHT_NULL");
   yr_set_integer(ELF_SHT_PROGBITS, module_object, "SHT_PROGBITS");
